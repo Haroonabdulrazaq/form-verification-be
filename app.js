@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var dotenv = require('dotenv');
+var createUser = require('./controllers/userController');
 
 dotenv.config();
 
@@ -36,13 +37,6 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-
-const createUser = (req, res, next) => {  
-  console.log('Hello world', req.body);
-  res.write('Hello world');
-
-  res.end();
-}
 
 app.use('/', router.post('/create-user', createUser));
 
