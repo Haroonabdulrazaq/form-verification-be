@@ -4,6 +4,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
+var dotenv = require('dotenv');
+
+dotenv.config();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -35,13 +38,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 
 const createUser = (req, res, next) => {  
-  console.log('Hello world');
+  console.log('Hello world', req.body);
   res.write('Hello world');
 
   res.end();
 }
 
-app.use('/create-user', router.get('/', createUser));
+app.use('/', router.post('/create-user', createUser));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
