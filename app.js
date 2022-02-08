@@ -3,11 +3,24 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
+var router = express.Router();
+
+const corsOptions = {
+  origin: process.env.ORIGIN,
+  optionsSuccessStatus: 200,
+  methods: "OPTIONS,GET,HEAD,PUT,PATCH,POST,DELETE", // Acceptable methods
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // include before other routes
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -20,7 +33,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+
+const createUser = (req, res, next) => {  
+  console.log('Hello world');
+  res.write('Hello world');
+
+  res.end();
+}
+
+app.use('/create-user', router.get('/', createUser));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
