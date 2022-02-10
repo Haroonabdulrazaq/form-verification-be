@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var cors = require('cors');
 var dotenv = require('dotenv');
+
 var createUser = require('./controllers/userController');
 
 dotenv.config();
