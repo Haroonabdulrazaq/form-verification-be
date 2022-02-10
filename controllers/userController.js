@@ -1,5 +1,6 @@
 const pool = require('../models/userModel');
 const {body, validationResult } = require('express-validator');
+const bcrypt = require('bcryptjs');
 
 const createUser = (req, res) => {
   // Removing noise and making sure its in right format
@@ -29,8 +30,7 @@ const createUser = (req, res) => {
     res.json({ msg: 'Error occured while creating new user, please check your inputs', error: errors.array() });
     return;
   } else {
-    // console.log('Lowercase email', req.body.email.toLowerCase()); ${req.body.email};
-    pool.query('SELECT * FROM myusers WHERE email = $1', [req.body.email], (error, result)=>{
+    pool.query('SELECT * FROM myusers WHERE email = $1', [req.body.email], async(error, result)=>{
       if(error) {
         res.json({ msg: 'Oops an error occured, while checking if user exist', error });
         return;
@@ -41,10 +41,10 @@ const createUser = (req, res) => {
         return;
       } else {
         const {email, firstname, lastname, password} = req.body;  // Destructuring from req.body
-       // const insertCommand = 'INSERT INTO myusers (email, firstname, lastname, password) VALUES ($1, $2, $3, $4)', [email, firstname, lastname, password]
-        
+        const hashPassword = await bcrypt.hash(password, 10);
+      
         pool.query('INSERT INTO myusers (email, firstname, lastname, password) VALUES ($1, $2, $3, $4)',
-          [email, firstname, lastname, password],
+          [email, firstname, lastname, hashPassword],
           (error, result)=>{
           if(error) {
             res.json({ msg: 'Error occured while creating new user', error: error });
@@ -57,46 +57,5 @@ const createUser = (req, res) => {
     })
   }
 }
-
-// const createUser = (req, res)=> {
-//   const {email, firstname, lastname, password } = req.body //Destructuring email and firstname from req.body
-//   pool.query('INSERT INTO myusers (email, firstname, lastname, password) VALUES ($1, $2, $3, $4)', [email, firstname, lastname, password], (error, results) => {
-//     if (error) {
-//       throw error;
-//     }
-//     console.log('I am the result', results);
-//     res.status(201).json(`User added with ID: ${results.rows}`);
-//   })
-// }
-
-// const createUser = [
-//     body("firstname")
-//     .isString()
-//     .withMessage("First name has to be a String.")
-//     .trim()
-//     .isLength({ min: 2 })
-//     .escape(),
-//   body("lastname")
-//     .isString()
-//     .withMessage("Last name has to be a String.")
-//     .trim()
-//     .isLength({ min: 2 })
-//     .escape(),
-//   body("email")
-//     .isString()
-//     .withMessage("Email has to be a String.")
-//     .isEmail()
-//     .withMessage("Invalid Email format")
-//     .normalizeEmail(),
-  
-
-// ]
-
-// const createUser = (req, res, next) => {  
-//   console.log('Hello world', req.body);
-//   res.write('Hello world');
-
-//   res.end();
-// }
 
 module.exports = createUser;
