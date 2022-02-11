@@ -68,9 +68,8 @@ const getUser = (req, res) =>{
       res.json({ status: 500, msg: 'could not fetrch users object, Please try again', result: result.rows})
       return;
     }
-    res.json({ status: 200, msg: 'Users Object', result: result.rows })
+    res.json({ status: 200, msg: 'Users Object is fetched Successfully', result: result.rows })
   })
-
 }
 
 export  {createUser, getUser};
