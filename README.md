@@ -1,13 +1,13 @@
 # Form Verification
-This is a test Project aimed at testing my proficiency in Reactjs, Form validation, communication with Backend, How to write Test and Responsive Design.
+This is a test Project aimed at testing my proficiency in Express, Form validation, communication with FrontEnd.
 
 
 ## Screenshot :camera:
 ![screenshot](./src/assets/images/Form-verification.png)
 
 ## Built with :heart:
-- React
-- Sass
+- Expressjs/Node
+- PostgreSQL
 
 ## Dependencies
 -- See package.json for full list of dependency.
@@ -16,7 +16,7 @@ This is a test Project aimed at testing my proficiency in Reactjs, Form validati
  [Form Verification]()
 
 ## Set up Locally :wrench:
-- [ ] Clone the repo using the git command <code> git clone https://github.com/Haroonabdulrazaq/form-verification-fb.git</code>
+- [ ] Clone the repo using the git command <code> git clone https://github.com/Haroonabdulrazaq/form-verification-be.git</code>
 - [ ] cd into the project directory <code> cd form-verification-be</code>
 - [ ] To install all dependencies in package.json, Run <code> npm install </code>
 - [ ] To start the project <code> npm run devstart </code>
