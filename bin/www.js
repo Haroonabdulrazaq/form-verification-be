@@ -4,9 +4,10 @@
  * Module dependencies.
  */
 
-var app = require('../app.js');
-var debug = require('debug')('form-verification-be:server');
-var http = require('http');
+import app from '../app.js';
+import debugFactory from 'debug';
+const debug = debugFactory('form-verification-be:server');
+import http from 'http';
 
 /**
  * Get port from environment and store in Express.
