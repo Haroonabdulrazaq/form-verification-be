@@ -9,17 +9,9 @@ dotenv.config();
 //connenction string
 // const connectionString = `postgresql://${process.env.user}:${process.env.password}@${process.env.host}:${process.env.port}/${process.env.database}`
 
-
-// const pool = new Pool({
-//   connectionString: isProduction ? process.env.DATABASE_URL : connectionString,
-//   ssl: {
-//     rejectUnauthorized: false,
-//   },
-// })
-
 const pool = new Pool({
   host: process.env.host,
-  user: process.env.username,
+  user: process.env.user,
   database: process.env.database,
   password: process.env.password,
   port: 5432,
