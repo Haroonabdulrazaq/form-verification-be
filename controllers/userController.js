@@ -34,6 +34,7 @@ const createUser = (req, res)=>{
   } else {
     pool.query('SELECT * FROM myusers WHERE email = $1', [req.body.email], async(error, result)=>{
       if(error) {
+        console.log(error);
         res.json({ status:400, msg: 'Oops an error occured, while checking if user exist', error });
         return;
       }
