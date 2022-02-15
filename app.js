@@ -20,7 +20,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
   methods: "OPTIONS,GET,HEAD,PUT,PATCH,POST,DELETE", // Acceptable methods
   credentials: true,
-  'Access-Control-Allow-Origin': process.encv.Frontend_URL,
+  'Access-Control-Allow-Origin': process.env.Frontend_URL,
 };
 
 app.use(cors(corsOptions));
