@@ -13,10 +13,10 @@ import indexRouter from './routes/index.js';
 import usersRouter from './routes/users.js';
 
 var app = express();
-var router = express.Router();
+// var router = express.Router();
 
 const corsOptions = {
-  origin: process.env.ORIGIN,
+  // origin: process.env.ORIGIN,
   optionsSuccessStatus: 200,
   methods: "OPTIONS,GET,HEAD,PUT,PATCH,POST,DELETE", // Acceptable methods
   credentials: true,
