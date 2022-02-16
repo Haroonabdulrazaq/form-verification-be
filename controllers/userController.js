@@ -5,6 +5,7 @@ import bcrypt from 'bcryptjs';
 import pool from '../models/userModel.js';
 
 const createUser = (req, res)=>{
+  res.header('Access-Control-Allow-Origin', process.env.Frontend_URL)
   body('email')
     .isString()
     .withMessage('Email has to be a String.')
